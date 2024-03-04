@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import userRoute from './route/userRoute'
+import imageRoute from './route/imageRoute'
 import { db } from './db';
 
 dotenv.config();
@@ -20,6 +21,8 @@ app.use(helmet());
 
 //routing middleware
 app.use(userRoute);
+app.use('/images',imageRoute)
+
 
 // Error handling middleware
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {

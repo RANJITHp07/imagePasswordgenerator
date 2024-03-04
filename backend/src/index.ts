@@ -3,16 +3,23 @@ import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
+import userRoute from './route/userRoute'
+import { db } from './db';
 
 dotenv.config();
 
 const app = express();
 
+
 // Set up logging
 app.use(morgan('dev'));
 
+app.use(express.json())
 app.use(cors());
 app.use(helmet());
+
+//routing middleware
+app.use(userRoute);
 
 // Error handling middleware
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
@@ -22,6 +29,8 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 
 const PORT: number = parseInt(process.env.PORT as string, 10) || 5000;
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+db().then(() => {
+    app?.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  });

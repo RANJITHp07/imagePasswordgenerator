@@ -3,16 +3,14 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import { message } from 'antd';
 import { jwtDecode } from "jwt-decode";
-import {  Dropdown,} from 'antd';
-import type { MenuProps } from 'antd';
 import { createImage } from '../apis/imageApi';
-import { useNavigate } from 'react-router-dom';
+import Navbar from '../Component/Navbar';
+
 
 function HomePage() {
     const [token,setToken]=useState<string | null>(null)
     const [file,setFile]=useState<File | null>(null)
     const [name,setName]=useState('')
-    const navigation=useNavigate()
 
 
     useEffect(()=>{
@@ -51,37 +49,9 @@ function HomePage() {
         
     }
 
-    const items: MenuProps['items'] = [
-        {
-          key: '1',
-          label: (
-            <a  href="/profile">
-              Profile
-            </a>
-          ),
-        },
-        {
-          key: '2',
-          label: (
-            <p onClick={()=>{
-                localStorage.removeItem('accessToken');
-                navigation('/login')
-            }}>
-             Logout
-            </p>
-          ),
-        }
-      ];
-
   return (
     <div>
-        <nav className='flex justify-between items-center px-6 p-4 '>
-            <p className='text-2xl text-indigo-950 text-bold font-medium font-serif'>uniqueImage</p>
-            <Dropdown menu={{ items }} placement="bottomLeft">
-            <img className='h-10 w-10 rounded-full' src={'/profile.jpg'}/>
-      </Dropdown>
-
-        </nav>
+       <Navbar/>
         <hr/>
         <div className='flex justify-center my-16 '>
         <div className='grid place-content-center box_shadow rounded-lg '>

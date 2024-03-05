@@ -8,7 +8,8 @@ interface ImageDocument extends Document {
 
 const ImageOtpSchema: Schema = new Schema({
   user_id: { type: mongoose.Types.ObjectId, required: true },
-  image_name: { type: String, required: true },
+  file_name: { type: String, required: true },
+  imageName:{type: String, required: true },
   code: { type: String, required: true }
 });
 

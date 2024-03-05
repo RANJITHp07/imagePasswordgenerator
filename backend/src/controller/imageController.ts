@@ -6,12 +6,12 @@ const createImage=async(req:Request,res:Response,next:NextFunction)=>{
     try{
         const data={
             user_id: req.params.id,
-            image_name: Date.now() + '-' + req.file?.originalname,
+            file_name: Date.now() + '-' + req.file?.originalname,
+            imageName:req.body.imageName,
             code: generateRandomCode(100000, 999999)
         }
-
         await ImageOtpModel.create(data)
-        res.status(200).json({message:'File uploaded successfully'});
+        res.status(200).json({success:true,message:'File uploaded successfully'});
     }catch(err){
          next(err)
     }

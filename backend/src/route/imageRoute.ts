@@ -4,7 +4,7 @@ import { upload } from '../middleware/multer';
 
 const router=express.Router()
 
-router.post('/', upload.single('file'), controller.createImage)
+router.post('/:id', upload.single('file'), controller.createImage)
 // router.post('/login',controller.login)
 
 export default router

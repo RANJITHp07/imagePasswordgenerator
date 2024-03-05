@@ -12,7 +12,7 @@ function App() {
      },
      {
       path:'/signup',
-      element: <SignUpPage/>
+      element: <PrivateRoute><SignUpPage/></PrivateRoute>
     },
     {
       path:'/',

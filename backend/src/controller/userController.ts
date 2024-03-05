@@ -16,7 +16,7 @@ const signUp=async(req:Request,res:Response,next:NextFunction)=>{
             res.status(400).json({ message: "Invalid sign-up data", errors });
         }
         await UserModel.create(req.body)
-        res.status(200).json({message: 'Successfully signedIn'})
+        res.status(200).json({success:true,message: 'Successfully signedIn'})
      }catch(err){
         next(err)
      }
@@ -37,7 +37,7 @@ const login=async(req:Request,res:Response,next:NextFunction)=>{
       if(user){
         if(user.password===req.body.password){
           const token=jwt.sign({id:user._id,username:user.username},process.env.SECRET_KEY as string);
-          res.status(200).json({message:"Login succesfully",token:token})
+          res.status(200).json({success:true,message:"Login succesfully",token:token})
         }
         res.status(400).json({ message: "Wrong password" });
       }

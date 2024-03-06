@@ -15,7 +15,7 @@ const app = express();
 
 // Set up logging
 app.use(morgan('dev'));
-app.use(express.json())
+app.use(express.json());
 app.use(cors());
 app.use(helmet());
 app.use('/photos', express.static(path.join(__dirname, '/public/images')));

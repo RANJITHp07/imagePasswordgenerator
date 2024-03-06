@@ -34,15 +34,19 @@ function ImageItem({item,handleDelete}:{item:Image,handleDelete:(id:string)=>voi
       }
   };
 
-  const handleSubmit=()=>{
-    if(item.code===code){
-       downloadFile(`http://localhost:5000/photos/${item.file_name}`)
-       setOpen(false)
-       return
+  const handleSubmit = () => {
+    if (item.code === code) {
+        const baseUrl = process.env.NODE_ENV === 'production'
+            ? "https://imagepasswordgenerator-1.onrender.com"
+            : "http://localhost:5000";
+
+        downloadFile(`${baseUrl}/photos/${item.file_name}`);
+        setOpen(false);
+        return;
     }
 
-    message.info('Wrong password')
-  } 
+    message.info('Wrong password');
+}
 
 
 

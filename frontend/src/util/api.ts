@@ -9,7 +9,7 @@ const token = localStorage.getItem('accessToken') || '';
 const Api = axios.create({
     baseURL: baseURL,
     headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: token
     }
 });
 

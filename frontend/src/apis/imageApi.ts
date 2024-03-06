@@ -18,3 +18,12 @@ export const getImages=async(id:string)=>{
         throw err
     }
 }
+
+export const deleteImage=async(id:string)=>{
+    try{
+       const res=await Api.delete(`/images/${id}`)
+       return res
+    }catch(err){
+        throw err
+    }
+}

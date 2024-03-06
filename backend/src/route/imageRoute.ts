@@ -6,6 +6,6 @@ const router=express.Router()
 
 router.post('/:id', upload.single('file'), controller.createImage)
 router.get('/:id', controller.listAllImages)
-// router.post('/login',controller.login)
+router.delete('/:id', controller.deleteImage)
 
 export default router

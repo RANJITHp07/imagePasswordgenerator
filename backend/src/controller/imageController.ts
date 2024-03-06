@@ -1,5 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import ImageOtpModel from "../model/imageSchema";
+import ImageOtpModel, { ImageDocument } from "../model/imageSchema";
+import path from 'path';
+import fs from 'fs'
 
 
 const createImage=async(req:Request,res:Response,next:NextFunction)=>{
@@ -29,8 +31,13 @@ const listAllImages=async(req:Request,res:Response,next:NextFunction)=>{
 
 const deleteImage=async(req:Request,res:Response,next:NextFunction)=>{
     try{
-      const deletedImage=await ImageOtpModel.findByIdAndDelete(req.params.id);
-      deletedImage ? res.status(200).json({message:'Sucesssfully deleted'}):res.status(400).json({message:'No such image'})
+      const deletedImage:ImageDocument | null=await ImageOtpModel.findByIdAndDelete(req.params.id);
+      if(deletedImage){
+        const imagePath = path.join(__dirname, '../public/images', deletedImage.file_name);
+        fs.unlinkSync(imagePath);
+        res.status(200).json({message:'Sucesssfully deleted'})
+      }
+            res.status(400).json({message:'No such image'})
     }catch(err){
         next(err)
     }

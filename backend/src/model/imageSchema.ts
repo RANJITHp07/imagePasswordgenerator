@@ -1,7 +1,8 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
-interface ImageDocument extends Document {
+export interface ImageDocument extends Document {
   user_id: mongoose.Types.ObjectId;
+  file_name: string,
   image_name: string;
   code: string;
 }

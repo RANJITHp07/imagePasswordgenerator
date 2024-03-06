@@ -1,13 +1,15 @@
 import axios from "axios";
 
+const baseURL = process.env.NODE_ENV === 'production'
+    ? "https://imagepasswordgenerator-1.onrender.com"
+    : "http://localhost:5000";
 
-const token = localStorage.getItem('accessToken') as string;
-
+const token = localStorage.getItem('accessToken') || '';
 
 const Api = axios.create({
-    baseURL: "http://localhost:5000",
+    baseURL: baseURL,
     headers: {
-        Authorization: token || ''
+        Authorization: `Bearer ${token}`
     }
 });
 

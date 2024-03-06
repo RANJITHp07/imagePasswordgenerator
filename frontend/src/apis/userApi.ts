@@ -6,8 +6,8 @@ export const signUp=async(user:Omit<UserForm, 'confirm_password'> )=>{
     try{
       const res= await Api.post('/signup',user)
       return res
-    }catch(err){
-        throw new Error("Api not woking")
+    }catch(err:any){
+      message.info(err?.response?.data?.message)
     }
 }
 

@@ -24,8 +24,8 @@ function ProfilePage() {
     <div>
        <Navbar id={params.state.id}/>
        <hr/>
-
-       <div className="relative overflow-x-auto my-5 border-2 ">
+       <p className='text-2xl text-indigo-950 text-bold font-medium font-serif my-8 mx-2 md:m-8'>Uploaded Collection</p>
+       <div className="relative overflow-x-auto my-5 border-2 mx-2 md:mx-8">
         {
             images.length >0&&
     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -50,7 +50,7 @@ function ProfilePage() {
           {
          images.map((m,index)=>{
                 return (
-                <ImageItem item={m}/>
+                <ImageItem item={m}  handleDelete={(id:string)=>setImages((prev)=>prev.filter((image)=>image._id!==id))}/>
                 )
             })
           }

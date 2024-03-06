@@ -30,9 +30,9 @@ function Navbar({id}:{id:string}) {
   return (
     <div>
                <nav className='flex justify-between items-center px-6 p-4 '>
-            <p className='text-2xl text-indigo-950 text-bold font-medium font-serif'>uniqueImage</p>
+            <p className='text-2xl text-indigo-950 text-bold font-medium font-serif cursor-pointer' onClick={()=>navigation('/')}>uniqueImage</p>
             <Dropdown menu={{ items }} placement="bottomLeft">
-            <img className='h-10 w-10 rounded-full' src={'/profile.jpg'}/>
+            <img className='h-10 w-10 rounded-full cursor-pointer' src={'/profile.jpg'}/>
       </Dropdown>
 
         </nav>

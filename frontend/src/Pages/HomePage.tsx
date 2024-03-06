@@ -55,7 +55,7 @@ function HomePage() {
         <hr/>
         <div className='flex justify-center my-16 '>
         <div className='grid place-content-center box_shadow rounded-lg '>
-            <div className='bg-indigo-950 w-[40rem] rounded-t-lg'>
+            <div className='bg-indigo-950 md:w-[40rem] rounded-t-lg'>
             <p className='text-3xl text-white text-center p-5  font-serif font-bold'>Upload You Photos</p>
             </div>
             <div className='p-5'>

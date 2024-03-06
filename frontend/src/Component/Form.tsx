@@ -29,7 +29,7 @@ function Form({page}:{page:boolean}) {
           
           const {confirm_password,...user}=data
           const res=await signUp(user);
-          if(res.data.success){
+          if(res?.data.success){
             message.success("Successfully signedIn");
             navigation('/login')
             return
@@ -44,7 +44,6 @@ function Form({page}:{page:boolean}) {
     //handle login
     const handleLogin=async(data:UserForm)=>{
           try{
-            console.log(data)
              const res=await login(data)
              if(res?.data.success){
                localStorage.setItem('accessToken',res.data.token)

@@ -5,9 +5,10 @@ import { Modal, message } from 'antd';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import { ChangeEvent, useState } from 'react';
 import axios from 'axios';
+import { Popconfirm } from 'antd';
 import { deleteImage } from '../apis/imageApi';
 
-function ImageItem({item}:{item:Image}) {
+function ImageItem({item,handleDelete}:{item:Image,handleDelete:(id:string)=>void}) {
     const [show,setShow]=useState(false)
     const [open,setOpen]=useState(false)
     const [code,setCode]=useState('')
@@ -43,9 +44,13 @@ function ImageItem({item}:{item:Image}) {
     message.info('Wrong password')
   } 
 
-   const handleDelete=async()=>{
+
+
+   const handleDeleteImage=async()=>{
        const res=await deleteImage(item._id)
-       console.log(res.data)
+       if(res.data.success){
+        handleDelete(item._id)
+       }
    }
 
   return (
@@ -58,10 +63,20 @@ function ImageItem({item}:{item:Image}) {
                    <div className="flex items-center">{!show ? "********" : item.code}  <RemoveRedEyeIcon className="text-xs mx-3 cursor-pointer" onClick={()=>setShow(!show)}/></div>
                 </td>
                 <td className="px-6 py-4">
-                    <p className='text-xs text-red-400' onClick={handleDelete}>Delete<DeleteIcon/></p>
+                <Popconfirm
+    title="Delete the Image"
+    description="Are you sure to delete this Image?"
+    onConfirm={handleDeleteImage}
+    onCancel={()=>console.log()}
+    okText="Yes"
+    cancelText="No"
+    okButtonProps={{ style: { backgroundColor: 'blue' } }}
+  >
+                    <p className='text-xs text-red-400 cursor-pointer'>Delete <DeleteIcon className='hidden md:block'/></p>
+                    </Popconfirm>
                 </td>
                 <td className="px-6 py-4 text-blue-400 font-normal">
-                    <p className=" text-blue-400 font medium cursor-pointer" onClick={()=>setOpen(true)}>Download <FileUploadIcon/></p>
+                    <p className=" text-blue-400 font medium cursor-pointer" onClick={()=>setOpen(true)}>Download <FileUploadIcon  className='hidden md:block'/></p>
                 </td>
             </tr>
             <Modal open={open} title={"Enter the code"} onCancel={()=>setOpen(false)} footer={null}>

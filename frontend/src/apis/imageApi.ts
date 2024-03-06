@@ -8,3 +8,13 @@ export const createImage=async(file:FormData,id:string)=>{
         throw err
     }
 }
+
+
+export const getImages=async(id:string)=>{
+    try{
+       const res=await Api.get(`/images/${id}`)
+       return res
+    }catch(err){
+        throw err
+    }
+}

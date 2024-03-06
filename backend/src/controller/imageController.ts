@@ -6,7 +6,7 @@ const createImage=async(req:Request,res:Response,next:NextFunction)=>{
     try{
         const data={
             user_id: req.params.id,
-            file_name: Date.now() + '-' + req.file?.originalname,
+            file_name: req.file?.filename,
             imageName:req.body.imageName,
             code: generateRandomCode(100000, 999999)
         }
@@ -19,8 +19,9 @@ const createImage=async(req:Request,res:Response,next:NextFunction)=>{
 
 const listAllImages=async(req:Request,res:Response,next:NextFunction)=>{
     try{
-     const data=await ImageOtpModel.find({_id:req.params.id})
-     res.status(200).json({message:'All the images',data:data})
+        console.log(req.params.id)
+     const data=await ImageOtpModel.find({user_id:req.params.id})
+     res.status(200).json({ success:true,message:'All the images',data:data})
     }catch(err){
         next(err)
     }

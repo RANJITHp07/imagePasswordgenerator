@@ -51,7 +51,7 @@ function HomePage() {
 
   return (
     <div>
-       <Navbar/>
+       <Navbar id={token as string}/>
         <hr/>
         <div className='flex justify-center my-16 '>
         <div className='grid place-content-center box_shadow rounded-lg '>

@@ -2,16 +2,16 @@ import {  Dropdown,} from 'antd';
 import type { MenuProps } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
-function Navbar() {
+function Navbar({id}:{id:string}) {
     const navigation=useNavigate()
 
     const items: MenuProps['items'] = [
         {
           key: '1',
           label: (
-            <a  href="/profile">
+            <p onClick={()=>navigation('/profile',{state:{id}})}>
               Profile
-            </a>
+            </p>
           ),
         },
         {

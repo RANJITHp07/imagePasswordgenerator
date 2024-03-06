@@ -3,6 +3,7 @@ import LoginPage from "./Pages/loginPage";
 import SignUpPage from "./Pages/SignUpPage";
 import HomePage from "./Pages/HomePage";
 import PrivateRoute from "./Component/PrivateRoute";
+import ProfilePage from "./Pages/ProfilePage";
 
 function App() {
   const element = useRoutes([
@@ -17,6 +18,11 @@ function App() {
     {
       path:'/',
       element:  <PrivateRoute><HomePage/></PrivateRoute>
+    },
+
+    {
+      path:'/profile',
+      element:  <PrivateRoute><ProfilePage/></PrivateRoute>
     }
   ])
 
